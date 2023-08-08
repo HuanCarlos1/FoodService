@@ -1,0 +1,41 @@
+﻿[
+  {
+    "id": 1,
+    "name": "Resturant la perle",
+    "address": "Quatier Dassagho",
+    "description": "Venez visiter notre restaurant",
+    "profilePicture": null,
+    "foods": null,
+    "types": null,
+    "openingHours": "Mon 8:00AM-9PM",
+    "owner": null,
+    "createdAt": "0001-01-01T00:00:00",
+    "updatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "id": 2,
+    "name": null,
+    "address": null,
+    "description": null,
+    "profilePicture": null,
+    "foods": null,
+    "types": null,
+    "openingHours": null,
+    "owner": null,
+    "createdAt": "0001-01-01T00:00:00",
+    "updatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "id": 3,
+    "name": null,
+    "address": null,
+    "description": null,
+    "profilePicture": null,
+    "foods": null,
+    "types": null,
+    "openingHours": null,
+    "owner": null,
+    "createdAt": "0001-01-01T00:00:00",
+    "updatedAt": "0001-01-01T00:00:00"
+  }
+]
