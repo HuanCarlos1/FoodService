@@ -1,0 +1,17 @@
+version: 0.0
+Resources:
+  - TargetService:
+      Type: AWS::ECS::Service
+      Properties:
+        TaskDefinition: "arn:aws:ecs:us-east-1:568279883407:task-definition/Kamal-foods-Task-Definition:18"
+        LoadBalancerInfo:
+          ContainerName: "Kamal-foods-container"
+          ContainerPort: 5001
+        # Optional properties
+        PlatformVersion: "LATEST"
+Hooks:
+  - BeforeInstall: "LambdaFunctionToValidateBeforeInstall"
+  - AfterInstall: "LambdaFunctionToValidateAfterInstall"
+  - AfterAllowTestTraffic: "LambdaFunctionToValidateAfterTestTrafficStarts"
+  - BeforeAllowTraffic: "LambdaFunctionToValidateBeforeAllowingProductionTraffic"
+  - AfterAllowTraffic: "LambdaFunctionToValidateAfterAllowingProductionTraffic"

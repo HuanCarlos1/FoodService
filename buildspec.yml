@@ -1,0 +1,38 @@
+version: 0.2
+
+batch:
+  fast-fail: false
+#env:
+#  variables:
+#    - PFXPASSWORD: "cert"
+#    - DATASOURCE: "server=sql497.main-hosting.eu;database=u134705604_kamallFoods;user=u134705604_kamallFoods;password=Kamall-foods2021;SslMode=none"
+#    - EMAILPASSWORD: "kamallFoodsAuth17"
+#    - JWTSECRET: "eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTYzNTg2MzMxOCwiaWF0IjoxNjM1ODYzMzE4fQ.kE_1Yn2HlWERUWol2EeMgDw8i_5PEy2isKcwSza8Jfo"
+phases:
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 568279883407.dkr.ecr.us-east-1.amazonaws.com
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Building the Docker image...
+      - docker build -t kamal-foods-server .
+      - docker tag kamal-foods-server:latest 568279883407.dkr.ecr.us-east-1.amazonaws.com/kamal-foods-server:latest
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Pushing the Docker image...
+      - docker push 568279883407.dkr.ecr.us-east-1.amazonaws.com/kamal-foods-server:latest
+      - ContainerName="Kamal-foods-container"
+      - ImageURI=$(cat imageDetail.json | jq -r '.ImageURI')
+      - printf '[{"name":"CONTAINER_NAME","imageUri":"IMAGE_URI"}]' > imagedefinitions.json
+      - sed -i -e "s|CONTAINER_NAME|$ContainerName|g" imagedefinitions.json
+      - sed -i -e "s|IMAGE_URI|$ImageURI|g" imagedefinitions.json
+      - cat imagedefinitions.json
+
+artifacts:
+  files:
+    - imagedefinitions.json
+    - imageDetail.json
+                    
