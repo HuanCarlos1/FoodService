@@ -1,3 +1,4 @@
 {
-  "ImageURI": "568279883407.dkr.ecr.us-east-1.amazonaws.com/kamal-foods-server:latest"
+  "ImageURI": "568279883407.dkr.ecr.us-east-1.amazonaws.com/kamal-foods-server:latest",
+  "ImageURI": "568279883407.fer.ecr.us-west-1.amazonaws.com/kamal-foods-server:latest"
 }
